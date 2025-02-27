@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.1 on win32)" generated="2025-02-27T10:40:23.343203" rpa="false" schemaversion="5">
+<suite id="s1" name="AE" source="C:\Users\USER\PycharmProjects\AE">
+<suite id="s1-s1" name="Tests" source="C:\Users\USER\PycharmProjects\AE\Tests">
+<suite id="s1-s1-s1" name="Login" source="C:\Users\USER\PycharmProjects\AE\Tests\login.robot">
+<test id="s1-s1-s1-t1" name="Perform Login Test Case" line="23">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:23.805764" level="INFO">Opening browser 'Chrome' to base url 'https://www.automationexercise.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-27T10:40:23.805273" elapsed="4.785714"/>
+</kw>
+<kw name=" Perform Login Test Cases">
+<kw name="Read Csv File To List" owner="CSVLibrary">
+<msg time="2025-02-27T10:40:28.596125" level="INFO">${data} = [['username', 'password'], ['wronguser@example.com', 'WrongPass123'], ['john.doe@automation.com', 'SecurePassword123']]</msg>
+<var>${data}</var>
+<arg>${CSV_File}</arg>
+<doc>Read CSV file and return its content as a Python list of tuples.</doc>
+<status status="PASS" start="2025-02-27T10:40:28.594926" elapsed="0.001287"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-27T10:40:28.596708" level="INFO">[['username', 'password'], ['wronguser@example.com', 'WrongPass123'], ['john.doe@automation.com', 'SecurePassword123']]</msg>
+<arg>${data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-27T10:40:28.596492" elapsed="0.000284"/>
+</kw>
+<kw name="Perform Login">
+<kw name="Wait And Click" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:28.597958" elapsed="0.042019"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:28.640742" level="INFO">Clicking element '//*[@href='/login']'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:28.640371" elapsed="1.677194"/>
+</kw>
+<arg>${signup_login}</arg>
+<status status="PASS" start="2025-02-27T10:40:28.597553" elapsed="1.720214"/>
+</kw>
+<kw name="Wait And Input Text" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:30.318533" elapsed="0.042874"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:30.362211" level="INFO">Typing text 'wronguser@example.com' into text field '//*[@data-qa='login-email']'.</msg>
+<arg>${locator}</arg>
+<arg>${text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:30.361783" elapsed="0.314769"/>
+</kw>
+<arg>${email_text}</arg>
+<arg>${username}</arg>
+<status status="PASS" start="2025-02-27T10:40:30.318041" elapsed="0.358755"/>
+</kw>
+<kw name="Wait And Input Text" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:30.677767" elapsed="0.038752"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:30.717096" level="INFO">Typing text 'WrongPass123' into text field '//*[@data-qa='login-password']'.</msg>
+<arg>${locator}</arg>
+<arg>${text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:30.716779" elapsed="0.150806"/>
+</kw>
+<arg>${Password_text}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2025-02-27T10:40:30.677140" elapsed="0.190589"/>
+</kw>
+<kw name="Wait And Click" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:30.868320" elapsed="0.021753"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:30.890576" level="INFO">Clicking element '//*[@data-qa='login-button']'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:30.890308" elapsed="1.077784"/>
+</kw>
+<arg>${Login_btn}</arg>
+<status status="PASS" start="2025-02-27T10:40:30.867947" elapsed="1.100338"/>
+</kw>
+<arg>${data}[1][0]</arg>
+<arg>${data}[1][1]</arg>
+<status status="PASS" start="2025-02-27T10:40:28.597021" elapsed="3.371364"/>
+</kw>
+<kw name="Perform Login">
+<kw name="Wait And Click" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:31.969645" elapsed="0.031616"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:32.001865" level="INFO">Clicking element '//*[@href='/login']'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:32.001554" elapsed="1.169821"/>
+</kw>
+<arg>${signup_login}</arg>
+<status status="PASS" start="2025-02-27T10:40:31.969197" elapsed="1.202345"/>
+</kw>
+<kw name="Wait And Input Text" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:33.172314" elapsed="0.056898"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:33.229837" level="INFO">Typing text 'john.doe@automation.com' into text field '//*[@data-qa='login-email']'.</msg>
+<arg>${locator}</arg>
+<arg>${text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:33.229503" elapsed="0.321090"/>
+</kw>
+<arg>${email_text}</arg>
+<arg>${username}</arg>
+<status status="PASS" start="2025-02-27T10:40:33.171792" elapsed="0.379063"/>
+</kw>
+<kw name="Wait And Input Text" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:33.552135" elapsed="0.037769"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:33.590607" level="INFO">Typing text 'SecurePassword123' into text field '//*[@data-qa='login-password']'.</msg>
+<arg>${locator}</arg>
+<arg>${text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:33.590271" elapsed="0.228364"/>
+</kw>
+<arg>${Password_text}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2025-02-27T10:40:33.551278" elapsed="0.267529"/>
+</kw>
+<kw name="Wait And Click" owner="variables">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-27T10:40:33.819480" elapsed="0.026085"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-27T10:40:33.846030" level="INFO">Clicking element '//*[@data-qa='login-button']'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-27T10:40:33.845793" elapsed="2.307102"/>
+</kw>
+<arg>${Login_btn}</arg>
+<status status="PASS" start="2025-02-27T10:40:33.819064" elapsed="2.334149"/>
+</kw>
+<arg>${data}[2][0]</arg>
+<arg>${data}[2][1]</arg>
+<status status="PASS" start="2025-02-27T10:40:31.968644" elapsed="4.184778"/>
+</kw>
+<status status="PASS" start="2025-02-27T10:40:28.593314" elapsed="7.560171"/>
+</kw>
+<status status="PASS" start="2025-02-27T10:40:23.803696" elapsed="12.350198"/>
+</test>
+<status status="PASS" start="2025-02-27T10:40:23.384805" elapsed="12.770532"/>
+</suite>
+<status status="PASS" start="2025-02-27T10:40:23.382819" elapsed="12.776291"/>
+</suite>
+<status status="PASS" start="2025-02-27T10:40:23.344940" elapsed="12.815644"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="AE" id="s1" pass="1" fail="0" skip="0">AE</stat>
+<stat name="Tests" id="s1-s1" pass="1" fail="0" skip="0">AE.Tests</stat>
+<stat name="Login" id="s1-s1-s1" pass="1" fail="0" skip="0">AE.Tests.Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

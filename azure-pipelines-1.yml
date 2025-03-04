@@ -25,8 +25,9 @@ stages:
 
     - script: |
         call venv\Scripts\activate
-        pip install --upgrade pip
-      displayName: 'Upgrade Pip'
+        python -m ensurepip
+      displayName: 'Ensure Pip is Installed'
+
 
     - task: Cache@2
       inputs:

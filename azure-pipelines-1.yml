@@ -25,8 +25,8 @@ stages:
 
     - script: |
         call venv\Scripts\activate
-        pip install --upgrade pip
-      displayName: 'Upgrade Pip'
+        python -m ensurepip  # استخدام ensurepip بدلاً من pip install --upgrade pip
+      displayName: 'Ensure Pip is Installed'
 
     - task: Cache@2
       inputs:
@@ -42,16 +42,32 @@ stages:
       displayName: 'Install Dependencies if Cache Miss'
 
 - stage: Test
-  displayName: 'Run Tests'
+  displayName: 'Run Tests in Parallel'
   dependsOn: Setup
   jobs:
-  - job: RunTests
-    displayName: 'Execute All Tests'
+  - job: WebTests
+    displayName: 'Run Web-Based Tests'
     steps:
     - script: |
         call venv\Scripts\activate
-        robot -d results AE/Tests
-      displayName: 'Run Robot Framework Tests'
+        robot -d results/web_tests AE/Tests/WebTests
+      displayName: 'Execute Web Tests'
+
+  - job: MobileTests
+    displayName: 'Run Mobile-Based Tests'
+    steps:
+    - script: |
+        call venv\Scripts\activate
+        robot -d results/mobile_tests AE/Tests/MobileTests
+      displayName: 'Execute Mobile Tests'
+
+  - job: API_Tests
+    displayName: 'Run API Tests'
+    steps:
+    - script: |
+        call venv\Scripts\activate
+        robot -d results/api_tests AE/Tests/APITests
+      displayName: 'Execute API Tests'
 
 - stage: Deploy
   displayName: 'Save and Publish Test Results'
@@ -64,3 +80,4 @@ stages:
     - publish: $(System.DefaultWorkingDirectory)/results
       artifact: test-results
       displayName: 'Save Test Results'
+

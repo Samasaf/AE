@@ -6,9 +6,8 @@ pool:
  
 steps:
   - script: |
-      echo "Installing Python 3.9"
-      choco install python --version 3.9 -y
-    displayName: 'Install Python'
+      python --version
+    displayName: 'Verify python installation'
  
   - script: |
       python -m venv venv  # Create a virtual environment

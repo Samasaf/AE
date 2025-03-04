@@ -41,7 +41,6 @@ stages:
       condition: ne(variables.CACHE_RESTORED, 'true')
       displayName: 'Install Dependencies if Cache Miss'
 
----
 - stage: Test
   displayName: 'Run Tests in Parallel'
   dependsOn: Setup
@@ -62,7 +61,6 @@ stages:
         robot -d results/integration_tests AE/Tests/IntegrationTests
       displayName: 'Execute Integration Tests'
 
----
 - stage: Deploy
   displayName: 'Save and Publish Test Results'
   dependsOn: Test

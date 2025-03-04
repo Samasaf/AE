@@ -43,32 +43,16 @@ stages:
       displayName: 'Install Dependencies if Cache Miss'
 
 - stage: Test
-  displayName: 'Run Tests in Parallel'
+  displayName: 'Run All Tests'
   dependsOn: Setup
   jobs:
-  - job: WebTests
-    displayName: 'Run Web-Based Tests'
+  - job: RunAllTests
+    displayName: 'Execute All Robot Framework Tests'
     steps:
     - script: |
         call venv\Scripts\activate
-        robot -d results/web_tests AE/Tests/WebTests
-      displayName: 'Execute Web Tests'
-
-  - job: MobileTests
-    displayName: 'Run Mobile-Based Tests'
-    steps:
-    - script: |
-        call venv\Scripts\activate
-        robot -d results/mobile_tests AE/Tests/MobileTests
-      displayName: 'Execute Mobile Tests'
-
-  - job: API_Tests
-    displayName: 'Run API Tests'
-    steps:
-    - script: |
-        call venv\Scripts\activate
-        robot -d results/api_tests AE/Tests/APITests
-      displayName: 'Execute API Tests'
+        robot -d results AE/Tests
+      displayName: 'Run All Tests'
 
 - stage: Deploy
   displayName: 'Save and Publish Test Results'

@@ -1,23 +1,48 @@
 trigger:
-  - main  # Runs when changes are pushed to the "main" branch
- 
+  branches:
+    include:
+      - main  # تأكدي أن الفرع صحيح
+
 pool:
-  name: Demo  # Use your self-hosted agent pool
- 
-steps:
-  - script: |
-      echo "Installing Python 3.9"
-      choco install python --version 3.9 -y
-    displayName: 'Install Python'
- 
-  - script: |
-      python -m venv venv  # Create a virtual environment
-      .\venv\Scripts\activate  # Activate the virtual environment (Windows)
-      pip install --upgrade pip  # Upgrade pip to the latest version
-      pip install pytest  # Install pytest (or other packages you need)
-    displayName: 'Install Dependencies'
- 
-  - script: |
-      .\venv\Scripts\activate  # Ensure the virtual environment is activated (Windows)
-      pytest tests/  # Run tests
-    displayName: 'Run Tests'
+  name: 'Demo'  # تأكدي أن اسم الـ Self-Hosted Agent لديكِ صحيح
+
+stages:
+- stage: Build
+  displayName: 'Setup Environment'
+  jobs:
+  - job: Build
+    steps:
+    - checkout: self  # جلب الكود من GitHub
+
+    - script: |
+        python --version
+      displayName: 'Verify Python Installation'
+
+    - script: |
+        python -m venv venv
+        call venv\Scripts\activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+      displayName: 'Setup Python Environment & Install Dependencies'
+
+- stage: Test
+  displayName: 'Run Robot Framework Tests'
+  dependsOn: Build
+  jobs:
+  - job: Test
+    steps:
+    - script: |
+        call venv\Scripts\activate
+        robot -d results AE/Tests
+      displayName: 'Run Tests'
+
+- stage: Deploy
+  displayName: 'Save Test Results'
+  dependsOn: Test
+  condition: succeeded()
+  jobs:
+  - job: Deploy
+    steps:
+    - publish: $(System.DefaultWorkingDirectory)/results
+      artifact: test-results
+      displayName: 'Save Test Results'

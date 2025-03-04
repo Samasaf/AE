@@ -25,8 +25,9 @@ stages:
 
     - script: |
         call venv\Scripts\activate
-        python -m ensurepip  # استخدام ensurepip بدلاً من pip install --upgrade pip
-      displayName: 'Ensure Pip is Installed'
+        curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python get-pip.py
+      displayName: 'Install Pip using get-pip.py'
 
     - task: Cache@2
       inputs:
@@ -80,4 +81,3 @@ stages:
     - publish: $(System.DefaultWorkingDirectory)/results
       artifact: test-results
       displayName: 'Save Test Results'
-

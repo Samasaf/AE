@@ -25,9 +25,8 @@ stages:
 
     - script: |
         call venv\Scripts\activate
-        python -m ensurepip
-      displayName: 'Ensure Pip is Installed'
-
+        pip install --upgrade pip
+      displayName: 'Upgrade Pip'
 
     - task: Cache@2
       inputs:
@@ -43,24 +42,16 @@ stages:
       displayName: 'Install Dependencies if Cache Miss'
 
 - stage: Test
-  displayName: 'Run Tests in Parallel'
+  displayName: 'Run Tests'
   dependsOn: Setup
   jobs:
-  - job: UnitTests
-    displayName: 'Run Unit Tests'
+  - job: RunTests
+    displayName: 'Execute All Tests'
     steps:
     - script: |
         call venv\Scripts\activate
-        robot -d results/unit_tests AE/Tests/UnitTests
-      displayName: 'Execute Unit Tests'
-
-  - job: IntegrationTests
-    displayName: 'Run Integration Tests'
-    steps:
-    - script: |
-        call venv\Scripts\activate
-        robot -d results/integration_tests AE/Tests/IntegrationTests
-      displayName: 'Execute Integration Tests'
+        robot -d results AE/Tests
+      displayName: 'Run Robot Framework Tests'
 
 - stage: Deploy
   displayName: 'Save and Publish Test Results'
